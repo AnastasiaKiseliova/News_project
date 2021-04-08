@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>News List</title>
-</head>
-<body>
+{% extends "base_generic.html" %}
 
-</body>
-</html>
+{% block content %}
+
+ {% for item in News %}
+     <div>
+         <h2>{{ item.title }}</h2>
+         <p>{{ item.content }}</p>
+         <p>{{ item.created_at|date:"Y-m-d H:i" }}</p>
+         <hr>
+     </div>
+ {% endfor %}
+
+{% endblock %}
