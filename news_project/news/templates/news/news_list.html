@@ -2,13 +2,37 @@
 
 {% block content %}
 
- {% for item in News %}
-     <div>
-         <h2>{{ item.title }}</h2>
-         <p>{{ item.content }}</p>
-         <p>{{ item.created_at|date:"Y-m-d H:i" }}</p>
-         <hr>
-     </div>
- {% endfor %}
+<div class="row align-items-start" style="margin-top: 20px; margin-left: 20px; margin-right: 20px">
+
+    <div class="col-2">
+        <div id="list-example" class="list-group">
+            {% for item in Categories %}
+                <a class="list-group-item list-group-item-action" href="#">{{ item.title }}</a>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="col">
+        {% for item in News %}
+            <div class="row align-items-start">
+                <div class="col-2">
+                    <img src="https://picsum.photos/id/{{ item.id }}/200/235" alt="...">
+                </div>
+                <div class="col">
+                    <div class="card" style="margin-bottom: 20px">
+                      <div class="card-header"> <h3>{{ item.category }}</h3> </div>
+                      <div class="card-body">
+                        <h5 class="card-title"> {{ item.title }} </h5>
+                        <p class="card-text"> {{ item.content|truncatechars:300 }} </p>
+                        <p class="card-text">{{ item.created_at|date:"Y-m-d H:i" }}</p>
+                      </div>
+                    </div>
+                </div>
+            </div>
+         {% endfor %}
+    </div>
+
+</div>
 
 {% endblock %}
